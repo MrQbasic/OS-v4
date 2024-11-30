@@ -1,9 +1,13 @@
+#pragma once
+
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "lib/bootloader.h"
-#include "lib/screen/framebuffer.h"
-#include "lib/screen/consoleio.h"
+
+#include "bootloader.h"
+#include "screen/framebuffer.h"
+#include "screen/consoleio.h"
+#include "memory/allocator.h"
 
 void main(void) {
     // Ensure the bootloader actually understands our base revision (see spec).
@@ -14,16 +18,13 @@ void main(void) {
     //debug hook
     //for(uint64_t i=0; i<500*2000*2000; i++){}
 
-
-    if(setupFramebuffer()){
+    if(setupFramebuffer(framebuffer_request)){
         while(1);
     }
-    screenPrint("/0/e");
+    screenPrint("/0---KERNEL OS-v4---/n/e");
 
+    mem_init();
 
-    for(uint32_t i=0; i<5; i++){
-        screenPrint("/rHELLO WORLD! /rHEX: /xD /rBIN: /bD /n/e", colorRED, colorBLUE, i, colorGREEN, i);
-    }
 
     while(1);
 }
