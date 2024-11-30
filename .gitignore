@@ -1,2 +1,5 @@
 log.txt
 build/*
+.vscode
+tools/*.bin
+tools/*.bdf

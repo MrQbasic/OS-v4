@@ -31,11 +31,9 @@ mkdir -p "$MNT_DIR"
 sudo mount $PART $MNT_DIR
 echo "Mounted partition to: $MNT_DIR"
 
-
-#update GRUB
-sudo cp ./grub.cfg $MNT_DIR/boot/grub/
-echo "updated GRUB cfg"
-
+#install bootloader
+sudo cp ./limine.conf $MNT_DIR/boot/
+echo "Updated Bootloader"
 
 # Clean up
 sudo umount $PART

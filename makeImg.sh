@@ -53,12 +53,12 @@ mkdir -p "$MNT_DIR"
 sudo mount -t ext4 $PART $MNT_DIR
 echo "Mounted partition to: $MNT_DIR"
 
-#install grub
+#install bootloader
 sudo mkdir -p $MNT_DIR/boot
-sudo grub-install --target=i386-pc --boot-directory=$MNT_DIR/boot "$LOOP_DEV"
-sudo mkdir -p $MNT_DIR/grub
-sudo cp ./grub.cfg $MNT_DIR/boot/grub/
-echo "Installed GRUB"
+sudo cp /usr/share/limine/limine-bios.sys $MNT_DIR/boot
+sudo limine bios-install $LOOP_DEV
+sudo cp ./limine.conf $MNT_DIR/boot/
+echo "Installed Bootloader"
 
 
 
